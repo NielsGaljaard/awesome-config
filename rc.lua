@@ -263,6 +263,11 @@ globalkeys = gears.table.join(
           awful.spawn("firefox",{tag="www"})
         end,
               {description="start browser (firefox)", group="awesome"}),
+    awful.key({ modkey,"Shift"     }, "s",
+        function()
+          awful.spawn.with_shell("/home/niels/runscript.sh")
+        end,
+              {description="runscripts", group="awesome"}),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
