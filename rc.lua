@@ -49,7 +49,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "mytheme/theme.lua")
 beautiful.gap_single_client = false
 beautiful.useless_gap = 5
 -- This is used later as the default terminal and editor to run.
@@ -250,14 +250,19 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "e",
         function()
-          awful.spawn("nautilus",{tag="files"})
+          awful.spawn("alacritty -e lf",{tag="files"})
         end,
-              {description="start alacritty", group="awesome"}),
+              {description="start filemanager", group="awesome"}),
     awful.key({ modkey,           }, "b",
         function()
-          awful.spawn("google-chrome")
+          awful.spawn("google-chrome",{tag="www"})
         end,
               {description="start browser", group="awesome"}),
+    awful.key({ modkey,"Shift"     }, "b",
+        function()
+          awful.spawn("firefox",{tag="www"})
+        end,
+              {description="start browser (firefox)", group="awesome"}),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -279,8 +284,11 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+    awful.key({ modkey,           }, "w", 
+        function () 
+          awful.spawn("slack")
+        end,
+              {description = "start slack", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -591,3 +599,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
