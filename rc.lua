@@ -188,7 +188,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "term", "slack", "www", "vpn", "doc", "files", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "term", "slack", "www", "vpn", "doc", "files", "tickets", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -252,7 +252,12 @@ globalkeys = gears.table.join(
         function()
           awful.spawn("alacritty -e lf",{tag="files"})
         end,
-              {description="start filemanager", group="awesome"}),
+              {description="start file manager", group="awesome"}),
+    awful.key({ modkey,           }, "d",
+        function()
+          awful.spawn("alacritty -e newsboat",{tag="tickets"})
+        end,
+              {description="start ticket manager", group="awesome"}),
     awful.key({ modkey,           }, "b",
         function()
           awful.spawn("google-chrome",{tag="www"})
