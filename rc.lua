@@ -244,7 +244,7 @@ globalkeys = gears.table.join(
     { description = "start goland", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "b",
     function()
-      awful.spawn("firefox", { tag = "www" })
+      awful.spawn("firefox", { tag = "www", switchtotag = true })
     end,
     { description = "start browser (firefox)", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "s",
@@ -271,7 +271,7 @@ globalkeys = gears.table.join(
   ),
   awful.key({ modkey, }, "w",
     function()
-      awful.spawn("slack", { tag = "slack" })
+      awful.spawn("slack", { tag = "slack", switchtotag = true })
     end,
     { description = "start slack", group = "awesome" }),
 
